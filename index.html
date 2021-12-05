@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var overAll = document.createElement('div');
+            overAll.style.width = '100%';
+            overAll.style.display = 'flex';
+            overAll.style.flexDirection = 'row';
+            overAll.style.flexWrap = 'wrap';
+            overAll.style.height = '100%';
+
+            /* left side for product listed items */
+            var leftBox = document.createElement('div');
+            leftBox.style.display = 'flex';
+            leftBox.style.flexDirection = 'row';
+            leftBox.style.flexWrap = 'wrap'
+            leftBox.style.width = '75%';
+            overAll.appendChild(leftBox);
+
+            /* right side for cart listed items */
+            var rightBox = document.createElement('div');
+            rightBox.style.width ='25%';
+            rightBox.style.display = 'flex';
+            rightBox.style.flexDirection = 'row';
+            rightBox.style.flexWrap = 'wrap';
+
+            var cartDtail = document.createElement('div');
+            cartDtail.innerText = 'CART';
+            cartDtail.style.width = '100%';
+            cartDtail.style.border = '1px solid green';
+            cartDtail.style.flexDirection = 'row';
+            cartDtail.style.padding = '10px 10px 10px 10px';
+            rightBox.appendChild(cartDtail);
+            overAll.appendChild(rightBox);
+
+            var cartTotal = document.createElement('p');
+            cartTotal.innerText = 'Total: ';
+            cartDtail.appendChild(cartTotal);
+
+            var total = document.createElement('span');
+            total.style.float = 'right';
+            total.innerText = 0;
+            cartTotal.appendChild(total);
+
+
+            /* list of product items to left side box */
+
+            /*product item 1*/
+            var listItem1 = document.createElement('div');
+            listItem1.style.width = '22%';
+            listItem1.style.border = '1px solid green';
+            listItem1.style.paddingRight ='5px';
+            listItem1.style.margin = '20px 20px 20px 20px';
+
+            var img1 = document.createElement('img');
+            img1.setAttribute('src','https://www.canonrumors.co/wp-content/uploads/2017/07/canon-eos-7d-mark-ii.jpg');
+            img1.setAttribute('width', '200px');
+            img1.setAttribute('height', '200px');
+            img1.style.paddingBottom = '5px';
+            listItem1.appendChild(img1);
+
+            var product1 = document.createElement('div');
+            product1.innerText = 'CAMERA - 1,55,200';
+            product1.price = '155200';
+            product1.style.paddingLeft = '10px';
+            product1.style.paddingBottom = '10px';
+            listItem1.appendChild(product1);
+            
+            var button1 = document.createElement('button');
+            button1.innerText = 'ADD CART';
+            button1.style.marginLeft ='10px';
+            button1.style.marginBottom ='10px';
+            button1.id = 'button1';
+            button1.addEventListener('click',function() {
+                
+                var cartItem1 = document.createElement('p');
+                cartItem1.id = 'cartItem1';
+                cartItem1.innerText = product1.innerText;
+                document.getElementById('button1').disabled = 'true';
+                cartDtail.appendChild(cartItem1);
+                
+                total.innerText = Number(total.innerText) + Number(product1.price);
+
+                var removeItem1 = document.createElement('button');
+                removeItem1.style.float = 'right';
+                removeItem1.innerText = 'x';
+                removeItem1.addEventListener('click',function() {
+                    total.innerText = Number(total.innerText) - Number(product1.price);
+                    document.getElementById('button1').disabled = 'false';
+                    var myobj = document.getElementById('cartItem1');
+                    
+                    
+                    myobj.remove();
+                    
+                })
+                cartItem1.appendChild(removeItem1);
+            });
+            listItem1.appendChild(button1);
+            
+
+                /*product item 2*/
+                var listItem2 = document.createElement('div');
+                listItem2.style.width = '22%';
+                listItem2.style.border = '1px solid green';
+                listItem2.style.paddingRight ='5px';
+                listItem2.style.margin = '20px 20px 20px 20px';
+
+                var img2 = document.createElement('img');
+                img2.setAttribute('src','https://m.media-amazon.com/images/I/61mVMotG04L._SY679_.jpg');
+                img2.setAttribute('width', '150px');
+                img2.style.paddingBottom = '5px';
+                listItem2.appendChild(img2);
+
+                var product2 = document.createElement('div');
+                product2.innerText = 'Samsung Mobile - 1,45,200';
+                product2.price = '145200';
+                product2.style.paddingLeft = '10px';
+                product2.style.paddingBottom = '10px';
+                listItem2.appendChild(product2);
+                
+                var button2 = document.createElement('button');
+                button2.innerText = 'ADD CART';
+                button2.style.marginLeft ='10px';
+                button2.id = 'button2';
+                button2.style.marginBottom ='10px';
+                
+                button2.addEventListener('click',function() {
+                    total.innerText = Number(total.innerText) + Number(product2.price);
+
+                    var cartItem2 = document.createElement('p');
+                    cartItem2.id = 'cartItem2';
+                    cartItem2.innerText = product2.innerText;
+                    document.getElementById('button2').disabled = 'true';
+                    cartDtail.appendChild(cartItem2);
+
+                    var remove2 = document.createElement('button');
+                    remove2.style.float = 'right';
+                    remove2.innerText = 'x';
+                    remove2.addEventListener('click',function() {
+                        total.innerText = Number(total.innerText) - Number(product2.price);
+                        document.getElementById('button2').disabled = 'false';
+                        var myobj = document.getElementById('cartItem2');
+                        myobj.remove();
+                    })
+                    cartItem2.appendChild(remove2);
+                });
+                listItem2.appendChild(button2);
+                
+
+                   
+                var listItem3 = document.createElement('div');
+                listItem3.style.width = '22%';
+                listItem3.style.border = '1px solid green';
+                listItem3.style.paddingRight ='5px';
+                listItem3.style.margin = '20px 20px 20px 20px';
+
+                var img3 = document.createElement('img');
+                img3.setAttribute('src','https://www.looksgud.in/upload/item-image/1167/p0xg/p0xg-swiss-trend-black-dial-mens-wrist-watch-with-dummy-chronometer_500x500_0.jpg');
+                img3.setAttribute('width', '150px');
+                img3.style.paddingBottom = '5px';
+                listItem3.appendChild(img3);
+
+                var product3 = document.createElement('div');
+                product3.innerText = 'Watch - 1,000';
+                product3.price = '1000';
+                product3.style.paddingLeft = '10px';
+                product3.style.paddingBottom = '10px';
+                listItem3.appendChild(product3);
+                
+                var button3 = document.createElement('button');
+                button3.innerText = 'ADD CART';
+                button3.style.marginLeft ='10px';
+                button3.style.marginBottom ='10px';
+                button3.id = 'button3';
+                
+                button3.addEventListener('click',function() {
+                    total.innerText = Number(total.innerText) + Number(product3.price);
+                    
+                    var cartItem3 = document.createElement('p');
+                    cartItem3.id = 'cartItem3';
+                    cartItem3.innerText = product3.innerText;
+                    document.getElementById('button3').disabled ='true';
+                    cartDtail.appendChild(cartItem3);
+
+                    var remove3 = document.createElement('button');
+                    remove3.style.float = 'right';
+                    remove3.innerText = 'x';
+                    remove3.addEventListener('click',function() {
+                        total.innerText = Number(total.innerText) - Number(product3.price);
+                        document.getElementById('button3').disabled = 'false';
+                        var myobj = document.getElementById('cartItem3');
+                        myobj.remove();
+                    })
+                    cartItem3.appendChild(remove3);
+                });
+                listItem3.appendChild(button3); 
+                
+                
+
+                var listItem4 = document.createElement('div');
+                listItem4.style.width = '22%';
+                listItem4.style.border = '1px solid green';
+                listItem4.style.paddingRight ='5px';
+                listItem4.style.margin = '20px 20px 20px 20px';
+
+                var img4 = document.createElement('img');
+                img4.setAttribute('src','https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFjYm9vayUyMHByb3xlbnwwfHwwfHw%3D&w=1000&q=80');
+                img4.setAttribute('width', '150px');
+                img4.style.paddingBottom = '5px';
+                listItem4.appendChild(img4);
+
+                var product4 = document.createElement('div');
+                product4.innerText = 'MAC LAPTOP - 2,00,000';
+                product4.price = '200000';
+                product4.style.paddingLeft = '10px';
+                product4.style.paddingBottom = '10px';
+                listItem4.appendChild(product4);
+                
+                var button4 = document.createElement('button');
+                button4.innerText = 'ADD CART';
+                button4.style.marginLeft ='10px';
+                button4.style.marginBottom ='10px';
+                button4.id = 'button4';
+                
+                button4.addEventListener('click',function() {
+                    total.innerText = Number(total.innerText) + Number(product4.price);
+                    
+                    var cartItem4 = document.createElement('p');
+                    cartItem4.id = 'cartItem4';
+                    cartItem4.innerText = product4.innerText;
+                    document.getElementById('button4').disabled = 'true';
+                    cartDtail.appendChild(cartItem4);
+
+                    var remove4 = document.createElement('button');
+                    remove4.style.float = 'right';
+                    remove4.innerText = 'x';
+                    remove4.addEventListener('click',function() {
+                        total.innerText = Number(total.innerText) - Number(product4.price);
+                        var myobj = document.getElementById('cartItem4');
+                        document.getElementById('button4').disabled = 'false';
+                        myobj.remove();
+                    })
+                    cartItem4.appendChild(remove4);
+                });
+                listItem4.appendChild(button4); 
+                
+
+                var listItem5 = document.createElement('div');
+                listItem5.style.width = '22%';
+                listItem5.style.border = '1px solid green';
+                listItem5.style.paddingRight ='5px';
+                listItem5.style.margin = '20px 20px 20px 20px';
+
+                var img5 = document.createElement('img');
+                img5.setAttribute('src','https://images.philips.com/is/image/PhilipsConsumer/QT4000_15-IMS-en_IN?$jpglarge$&wid=960');
+                img5.setAttribute('width', '150px');
+                img5.style.paddingBottom = '5px';
+                listItem5.appendChild(img5);
+
+                var product5 = document.createElement('div');
+                product5.innerText = 'TRIMMER - 1,500';
+                product5.price = '1500';
+                product5.style.paddingLeft = '10px';
+                product5.style.paddingBottom = '10px';
+                listItem5.appendChild(product5);
+                
+                var button5 = document.createElement('button');
+                button5.innerText = 'ADD CART';
+                button5.style.marginLeft ='10px';
+                button5.style.marginBottom ='10px';
+                button5.id = 'button5';
+             
+                button5.addEventListener('click',function() {
+                    total.innerText = Number(total.innerText) + Number(product5.price);
+                    
+                    var cartItem5 = document.createElement('p');
+                    cartItem5.id = 'cartItem5';
+                    cartItem5.innerText = product5.innerText;
+                    document.getElementById('button5').disabled = 'true';
+                    cartDtail.appendChild(cartItem5);
+
+                    var remove5 = document.createElement('button');
+                    remove5.style.float = 'right';
+                    remove5.innerText = 'x';
+                    remove5.addEventListener('click',function() {
+                        total.innerText = Number(total.innerText) - Number(product5.price);
+                        document.getElementById('button5').disabled = 'false';
+                        var myobj = document.getElementById('cartItem5');
+                        myobj.remove();
+                    })
+                    cartItem5.appendChild(remove5);
+                });
+                listItem5.appendChild(button5); 
+                
+                var listItem6 = document.createElement('div');
+                listItem6.style.width = '22%';
+                listItem6.style.border = '1px solid green';
+                listItem6.style.paddingRight ='5px';
+                listItem6.style.margin = '20px 20px 20px 20px';
+
+                var img6 = document.createElement('img');
+                img6.setAttribute('src','data:image/jpeg;base64,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');
+                img6.setAttribute('width', '150px');
+                img6.style.paddingBottom = '5px';
+                listItem6.appendChild(img6);
+
+                var product6 = document.createElement('div');
+                product6.innerText = 'TV - 20,000';
+                product6.price = '20000';
+                product6.style.paddingLeft = '10px';
+                product6.style.paddingBottom = '10px';
+                listItem6.appendChild(product6);
+                
+                var button6 = document.createElement('button');
+                button6.innerText = 'ADD CART';
+                button6.style.marginLeft ='10px';
+                button6.style.marginBottom ='10px';
+                button6.id = 'button6';
+                
+                button6.addEventListener('click',function() {
+                    total.innerText = Number(total.innerText) + Number(product6.price);
+                    
+                    var cartItem6 = document.createElement('p');
+                    cartItem6.id = 'cartItem6';
+                    cartItem6.innerText = product6.innerText;
+                    document.getElementById('button6').disabled = 'true';
+                    cartDtail.appendChild(cartItem6);
+
+                    var remove6 = document.createElement('button');
+                    remove6.style.float = 'right';
+                    remove6.innerText = 'x';
+                    remove6.addEventListener('click',function() {
+                        total.innerText = Number(total.innerText) - Number(product6.price);
+                        document.getElementById('button6').disabled = 'false';
+                        var myobj = document.getElementById('cartItem6');
+                        myobj.remove();
+                    })
+                    cartItem6.appendChild(remove6);
+                });
+                listItem6.appendChild(button6); 
+                
+
+
+
+
+
+
+            leftBox.appendChild(listItem1);
+            leftBox.appendChild(listItem2);
+            leftBox.appendChild(listItem3);
+            leftBox.appendChild(listItem4);
+            leftBox.appendChild(listItem5);
+            leftBox.appendChild(listItem6);
+            document.body.appendChild(overAll);
+
+    </script>
+</body>
+</html>
